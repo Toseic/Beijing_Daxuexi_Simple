@@ -12,8 +12,8 @@ def study(username, password, ua):
     # return 1:success;0:fail
     url = ''
     tryTime = 0
-    # proxy_l = fetchproxy()
-    proxy_l = False
+    proxy_l = fetchproxy()
+    # proxy_l = False
 
     while tryTime < 4:
         try:
