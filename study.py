@@ -6,15 +6,20 @@ import traceback
 import requests
 
 from utility import encrypt, cap_recognize
-
+from proxy import fetchproxy,proxies
 
 def study(username, password, ua):
     # return 1:success;0:fail
     url = ''
     tryTime = 0
+    # proxy_l = fetchproxy()
+    proxy_l = False
+
     while tryTime < 4:
         try:
             bjySession = requests.session()
+            if proxy_l and len(proxy_l)>tryTime: 
+                bjySession.proxies = proxies(proxy_l[tryTime])
             bjySession.timeout = 5  # set session timeout
             bjySession.headers.update({"User-Agent": ua, })
             touch = bjySession.get(url="https://m.bjyouth.net/site/login")
